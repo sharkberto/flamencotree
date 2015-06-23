@@ -14,16 +14,24 @@ song_chunks = organize_songs(text)
 
 with open('C:\\Users\\Alex\\Documents\\flamenco_data\\raw_scraped_data\\rawletras.json', 'w+') as samples:
     palo_regex = re.compile('(?<=\()(.*?)(?=\))')
-    unclean_count = 0
-    unclean_training_data = []
+    unclean_training_samples = []
+    clean_training_samples = []
     for index in range(len(song_chunks)):
         extracted_palo = re.search(palo_regex, song_chunks[index][0])
-            if extracted_palo == None: song_chunks[index].insert(0, 'NA') ## Insert palo name in first position      
-            else: unclean_training_samples[unclean_count + 1].insert(0, extracted_palo.group(0))      
+        if extracted_palo == None:
+            song_chunks[index].insert(0, 'NA')
+            unclean_training_samples.append(song_chunks[index]) ## Insert palo name in first position      
+            # del song_chunks[index], recode so the unwanted elements can be taken at end, by keeping
+            # list of their indices
+            # for itemnum in NAitemlist: song_chunks.pop(itemnum)
+        else:
+            song_chunks[index].insert(0, extracted_palo.group(0))
+    # remove the 'NA' palo samples from the song_chunks set
+        
+        
+            
 
 # If palo has 'NA', add to other list and delete element from song_chunks
-#   
-        else: unclean_training_samples[unclean_count + 1].insert(0, extracted_palo.group(0))      
 #
 
 
