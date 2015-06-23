@@ -1,57 +1,54 @@
 import re, json
 from organize_canteytoque import *
 
+#
 # open flamenco file
 with open('C:\\Users\\Alex\\Documents\\flamenco_data\\raw_scraped_data\\rawtitleletras.txt') as doc:
     text = doc.read()
+#
+# Pre-processing
+#
 
-# return song data in an array of text chunks
-chunks = organize_songs(text)
-
+song_chunks = organize_songs(text)
 
 
 with open('C:\\Users\\Alex\\Documents\\flamenco_data\\raw_scraped_data\\rawletras.json', 'w+') as samples:
+    palo_regex = re.compile('(?<=\()(.*?)(?=\))')
+    unclean_count = 0
+    unclean_training_data = []
+    for index in range(len(song_chunks)):
+        extracted_palo = re.search(palo_regex, song_chunks[index][0])
+            if extracted_palo == None: song_chunks[index].insert(0, 'NA') ## Insert palo name in first position      
+            else: unclean_training_samples[unclean_count + 1].insert(0, extracted_palo.group(0))      
 
-    # regex to get the palo name out of parens in the song title
-    palo_regex = re.compile('(?<=\()(.*?)(?=\))') 
-
-    for index in range(len(chunks)):
-
-        # getting palo name from the title
-        match = re.search(palo_regex, chunks[index][0]) 
-
-        if re.search(palo_regex, chunks[index][0]) != None: 
-
-            #insert in first position
-                #rename cleaned up chunks as training set
-            chunks[index].insert(0, match.group(0)) 
-    
-        else: chunks[index].insert(0, 'NA') 
-
-        #if palo has 'NA', add to separate list 'unclean_train_set' and delete element from chunks
+# If palo has 'NA', add to other list and delete element from song_chunks
+#   
+        else: unclean_training_samples[unclean_count + 1].insert(0, extracted_palo.group(0))      
+#
 
 
-    #creating dictionary structure
+
+##
+# Create dictionary structure
+##
+
     flamenco_dict = {}
 
 
-
-
-    #initializing the dictionaries and writing to files
     with open('C:\\Users\\Alex\\Documents\\flamenco_data\\raw_scraped_data\\rawletras_labels.json', 'w+') as sample_labels:
 
-        for idx in range(len(chunks)):
+        for idx in range(len(song_chunks)):
             # create the dictionary element to add to the main dictionary
-            flamenco_nextdict = {chunks[idx][1]:chunks[idx][2]}
+            flamenco_nextdict = {song_chunks[idx][1]:song_chunks[idx][2]}
             
             # add each song
-            flamenco_dict.update({chunks[idx][0] : flamenco_nextdict})
+            flamenco_dict.update({song_chunks[idx][0] : flamenco_nextdict})
             
             # write the letras to the first file
-            samples.write(chunks[idx][2] + '\n')
+            samples.write(song_chunks[idx][2] + '\n')
             
             # write the letra labels to the second file
-            sample_labels.write(chunks[idx][0] + '\n') 
+            sample_labels.write(song_chunks[idx][0] + '\n') 
 
 
 
