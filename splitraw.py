@@ -16,18 +16,19 @@ with open('C:\\Users\\Alex\\Documents\\flamenco_data\\raw_scraped_data\\rawletra
     palo_regex = re.compile('(?<=\()(.*?)(?=\))')
     unclean_training_samples = []
     clean_training_samples = []
+    NA_palo_index_list = []
     for index in range(len(song_chunks)):
         extracted_palo = re.search(palo_regex, song_chunks[index][0])
         if extracted_palo == None:
             song_chunks[index].insert(0, 'NA')
             unclean_training_samples.append(song_chunks[index]) ## Insert palo name in first position      
-            # del song_chunks[index], recode so the unwanted elements can be taken at end, by keeping
-            # list of their indices
-            # for itemnum in NAitemlist: song_chunks.pop(itemnum)
+            NA_palo_index_list.append(index)
         else:
             song_chunks[index].insert(0, extracted_palo.group(0))
-    # remove the 'NA' palo samples from the song_chunks set
-        
+
+# remove the 'NA' palo samples from the song_chunks set
+    for index in range(len(NA_palo_index_list)):
+        song_chunks.pop(index)
         
             
 
