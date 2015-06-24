@@ -3,7 +3,7 @@ from organize_canteytoque import *
 
 #
 # open flamenco file
-with open('C:\\Users\\Alex\\Documents\\flamenco_data\\raw_scraped_data\\rawtitleletras.txt') as doc:
+with open('rawtitleletras.txt') as doc:
     text = doc.read()
 #
 # Pre-processing
@@ -12,7 +12,7 @@ with open('C:\\Users\\Alex\\Documents\\flamenco_data\\raw_scraped_data\\rawtitle
 song_chunks = organize_songs(text)
 
 
-with open('C:\\Users\\Alex\\Documents\\flamenco_data\\raw_scraped_data\\rawletras.json', 'w+') as samples:
+with open('rawletras.json', 'w+') as samples:
     palo_regex = re.compile('(?<=\()(.*?)(?=\))')
     unclean_training_samples = []
     clean_training_samples = []
@@ -26,16 +26,17 @@ with open('C:\\Users\\Alex\\Documents\\flamenco_data\\raw_scraped_data\\rawletra
         else:
             song_chunks[index].insert(0, extracted_palo.group(0))
 
-# remove the 'NA' palo samples from the song_chunks set
-    for index in range(len(NA_palo_index_list)):
-        song_chunks.pop(index)
-        
-            
+# remove the 'NA' palo samples from the sample set
+    def checkforNA(x): return x[0] != 'NA'
+    song_chunks = filter(checkforNA, song_chunks)
 
-# If palo has 'NA', add to other list and delete element from song_chunks
-#
-
-
+# remove the album metadata from the sample set
+    album_info_regex = re.compile('\s\d')
+    def checkforAlbum(x):
+        anyAlbumInfo = re.search(album_info_regex, x[2])
+        return anyAlbumInfo == None
+    
+    song_chunks = filter(checkforAlbum, song_chunks)  
 
 ##
 # Create dictionary structure
