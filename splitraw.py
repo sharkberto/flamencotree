@@ -1,60 +1,41 @@
 import re, json
 from organize_canteytoque import *
 
-#
-# open flamenco file
+# Open flamenco file for pre-processing
 with open('rawtitleletras.txt') as doc:
     text = doc.read()
-#
-# Pre-processing
-#
 
 song_chunks = organize_songs(text)
 
-
-with open('rawletras.json', 'w+') as samples:
+with open('samples.txt', 'w+') as samples:
     palo_regex = re.compile('(?<=\()(.*?)(?=\))')
     unclean_training_samples = []
-    clean_training_samples = []
-    NA_palo_index_list = []
+
+    # Insert palo name in first position, else insert 'NA'
     for index in range(len(song_chunks)):
         extracted_palo = re.search(palo_regex, song_chunks[index][0])
-        if extracted_palo == None:
+        if extracted_palo == None:      
             song_chunks[index].insert(0, 'NA')
-            unclean_training_samples.append(song_chunks[index]) ## Insert palo name in first position      
-            NA_palo_index_list.append(index)
-        else:
+            unclean_training_samples.append(song_chunks[index])       
+        else: 
+            
             song_chunks[index].insert(0, extracted_palo.group(0))
 
-# remove the 'NA' palo samples from the sample set
+    # Remove the 'NA' palo samples from the sample set  
     def checkforNA(x): return x[0] != 'NA'
     song_chunks = filter(checkforNA, song_chunks)
 
-# remove the album metadata from the sample set
-    album_info_regex = re.compile('\s\d')
+    # Remove the album metadata from the sample set
     def checkforAlbum(x):
+        album_info_regex = re.compile('\s\d')
         anyAlbumInfo = re.search(album_info_regex, x[2])
         return anyAlbumInfo == None
     
     song_chunks = filter(checkforAlbum, song_chunks)  
 
-##
-# Create dictionary structure
-##
-
-    flamenco_dict = {}
-
-
-    with open('C:\\Users\\Alex\\Documents\\flamenco_data\\raw_scraped_data\\rawletras_labels.json', 'w+') as sample_labels:
-
+    with open('sample_labels.txt', 'w+') as sample_labels:
         for idx in range(len(song_chunks)):
-            # create the dictionary element to add to the main dictionary
-            flamenco_nextdict = {song_chunks[idx][1]:song_chunks[idx][2]}
-            
-            # add each song
-            flamenco_dict.update({song_chunks[idx][0] : flamenco_nextdict})
-            
-            # write the letras to the first file
+            # Write the sample to the first file
             samples.write(song_chunks[idx][2] + '\n')
             
             # write the letra labels to the second file
@@ -62,20 +43,6 @@ with open('rawletras.json', 'w+') as samples:
 
 
 
-
-    # compile dictionaries into json format...may be useful later
-    flamenco_dict_json = json.dumps(flamenco_dict, sort_keys=False, indent=4, separators=(',', ': '))
-
-        
-    
-
-
-
-
-# validate palos to ensure no extraneous info and harmonize naming    
-##with open ('C:\Users\Alex\Documents\\flamenco_data\palos_singular.txt','r+') as palos_singular:
-##    palos = [line.strip('\n') for line in palos_singular]
-##    palos = [line.lower() for line in palos]
 
 
 
