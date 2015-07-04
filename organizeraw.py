@@ -6,7 +6,7 @@ import codecs
 #
 
 # splits data into albums
-with codecs.open('artist_test.txt', encoding="latin-1") as raw:
+with codecs.open('rawtitleletras.txt', encoding="latin-1") as raw:
     text = raw.read()
     chunks = text.split('''<p style="font-weight:bold;font-size:1.5em;text-align:center;">''')
 
