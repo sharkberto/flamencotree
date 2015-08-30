@@ -1,0 +1,17 @@
+# Prototype for Engine For Song Lyric Typing 
+
+# Scrape all titles and letras:	/html/body/p[6],/html/body/p[11],  /html/body/p[12]/text()[1]
+	
+	# create array of elements split on '<h4>' to get songs with respective titles
+	# create dictionary of text between h4, with rest of text in array element
+	# optional: split on '<br>\n' to get lines
+	# create dictionary of all letras using palo as the key, and rest as features, 
+
+# Find lyrics that distinguish or characterize a song
+
+# Map Flamenco songs to their respective type (soleá, bulerías, fandangos)
+
+# Use lyrics, rhyme schemes, syllables per verse...see other flamenco_dataset_model file in flamenco_data folder
+
+# 
+
