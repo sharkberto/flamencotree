@@ -1,0 +1,13 @@
+{
+  "nodes":[
+  {"name":"Tonás","group":1},
+  {"name":"Martinetes","group":1},
+  {"name":"Debla","group":1},
+  {"name":"Pregones","group":1}
+  ],
+  "links":[
+    {"source":1,"target":1,"value":1},
+	{"source":1,"target":2,"value":1},
+	{"source":1,"target":3,"value":1}
+	]
+}
