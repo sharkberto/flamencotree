@@ -1,3 +1,17 @@
+Samples were collected from a song and lyrics repo. 
+
+The tree can be created using jquery or d3, but right now jquery is being tested first.
+
+One major question is where to focus priorities, given the list of ideas for an educational page that take a different tack in terms of delivering a quality service to guitarists.
+
+Priorities from most important to least important: 
+	* navegable structure of most common palos: tangos, bulerías, seguiriyas, sevillanas
+	* dropdown of key features (common letras, tonality, compás, range of speeds)
+	* connection to youtube resources
+
+
+** Data Collection Process **
+
 1. Collecting and cleaning data samples (splitraw.py) 
 
 	- splits data from flamenco website canteytoque.com
