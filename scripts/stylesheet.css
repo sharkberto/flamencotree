@@ -1,7 +1,11 @@
+
 form { margin-top: 20px; }
 form, #results { padding: 0 20px; }
 .item { margin-bottom: 25px; }
 .w100 { width: 100%; }
+
+.btn-primary { background: #952b2b; border-color: #957575; }
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus { background: #782b2b;  border-color: #952b2b; }
 
 .palo {
     height: 60px;

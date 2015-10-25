@@ -6,13 +6,13 @@ $(function() {
     $("form").on("submit", function(e) {
        e.preventDefault();
        // prepare the request
-       var request = gapi.client.youtube.search.list({
+       function searchA() {
+	   var request = gapi.client.youtube.search.list({
             part: "snippet",
             type: "video",
             q: encodeURIComponent($("#search").val()).replace(/%20/g, "+"),
             maxResults: 3,
-            order: "viewCount",
-            publishedAfter: "2015-01-01T00:00:00Z"
+            order: "viewCount"
        }); 
        // execute the request
        request.execute(function(response) {
@@ -23,6 +23,8 @@ $(function() {
                 $("#results").append(tplawesome(data, [{"title":item.snippet.title, "videoid":item.id.videoId}]));
             });
           });
+		  
+		  };
           resetVideoHeight();
        });
     });
