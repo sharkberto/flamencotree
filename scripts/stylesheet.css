@@ -1,3 +1,8 @@
+form { margin-top: 20px; }
+form, #results { padding: 0 20px; }
+.item { margin-bottom: 25px; }
+.w100 { width: 100%; }
+
 .palo {
     height: 60px;
     width: 100px;
@@ -10,7 +15,7 @@
 }
 
 .explorer {
-    height: 400px;
+    height: 200px;
     width: 400px;
     border-radius: 5px;
     background-color: #C0C0C0;
