@@ -24,6 +24,7 @@ $(document).ready( function() {
 	 //Same button to save the time the video event ends
 	 //Save these two times with the video ID and a user generated label
 	
+	
 	$('.explorer').hover( 
 		function() {
 			$(this).addClass('active');
@@ -31,6 +32,23 @@ $(document).ready( function() {
 		function() {
 			$(this).removeClass('active');
         });
+		
+		$('#save').click(function() {
+		
+		$('#current-time').text(formatTime( player.getCurrentTime() ));
+  
+    });
+	
+	function formatTime(time){
+		time = Math.round(time);
+
+		var minutes = Math.floor(time / 60),
+		seconds = time - minutes * 60;
+
+		seconds = seconds < 10 ? '0' + seconds : seconds;
+
+		return minutes + ":" + seconds;
+}
 
 });
 

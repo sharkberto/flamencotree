@@ -10,8 +10,8 @@
       var player;
       function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
-          height: '390',
-          width: '640',
+          height: '240',
+          width: '320',
           videoId: 'FTHaEQ0tRYY',
           events: {
             'onReady': onPlayerReady,
@@ -39,3 +39,4 @@
       function stopVideo() {
         player.stopVideo();
       }
+	      
