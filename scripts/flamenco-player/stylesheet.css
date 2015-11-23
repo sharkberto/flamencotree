@@ -1,0 +1,39 @@
+
+form { margin-top: 20px; }
+form, #results { padding: 0 20px; }
+.item { margin-bottom: 25px; }
+.w100 { width: 100%; }
+
+.btn-primary { background: #952b2b; border-color: #957575; }
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus { background: #782b2b;  border-color: #952b2b; }
+
+.palo {
+    height: 60px;
+    width: 100px;
+    border-radius: 5px;
+    background-color: #69D2E7;
+    text-align: center;
+    color: #FFFFFF;
+    font-family: Verdana, Arial, Sans-Serif;
+    opacity: 0.5;
+}
+
+.explorer {
+    height: 200px;
+    width: 400px;
+    border-radius: 5px;
+    background-color: #C0C0C0;
+    text-align: center;
+    color: #FFFFFF;
+    font-family: Verdana, Arial, Sans-Serif;
+    opacity: 0.5;
+}
+
+.link {
+    stroke: #777;
+    stroke-width: 2px;
+}
+
+.active {
+    background-color:#556677;
+}
