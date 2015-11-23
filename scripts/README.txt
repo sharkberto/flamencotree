@@ -4,7 +4,7 @@ SIMPLE
 
 1. Load video
 2. User sets breakpoints and adds metadata to describe section
-3. Video information saved and displayed in page
+3. Video information displayed in page, and saved to secure location for easy viewing
 
 SIMPLE 2 (uses OAuth access)
 

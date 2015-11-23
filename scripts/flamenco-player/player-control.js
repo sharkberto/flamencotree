@@ -22,7 +22,7 @@
 
       // 4. The API will call this function when the video player is ready.
       function onPlayerReady(event) {
-        event.target.seekTo(840)
+        event.target.seekTo(40)
 		event.target.playVideo();
       }
 

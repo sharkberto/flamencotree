@@ -3,7 +3,7 @@ $(document).ready( function() {
 	var newdiv = document.createElement( "div" );
 	var nodes = jQuery.parseJSON('[{"name":"Tonás"},{"name":"Martinetes"},{"name":"Debla"},{"name":"Pregones"}]');//'[{"name":"Tonás"},{"name":"Martinetes"},{"name":"Debla"},{"name":"Pregones"}]');
 	
-	$('#player').hide();
+	//$('#player').hide();
 	
 	//HOVER CHANGE COLOR
     $('.palo').hover( 
@@ -33,10 +33,16 @@ $(document).ready( function() {
 			$(this).removeClass('active');
         });
 		
-		$('#save').click(function() {
+	$('#save').click(function() {
 		
-		$('#current-time').text(formatTime( player.getCurrentTime() ));
-  
+		if ($('#start-time').is(':empty')) {
+		// do something
+		$('#start-time').text(formatTime( player.getCurrentTime() ));
+		
+		} else {
+		$('#end-time').text(formatTime( player.getCurrentTime() ));
+		
+	}
     });
 	
 	function formatTime(time){
