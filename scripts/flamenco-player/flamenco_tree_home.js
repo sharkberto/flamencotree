@@ -1,6 +1,7 @@
 $(document).ready( function() {
 
-	var newdiv = document.createElement( "div" );
+	var newtime = document.createElement("div");
+	newtime.innerHTML = "Hello";
 	var nodes = jQuery.parseJSON('[{"name":"Tonás"},{"name":"Martinetes"},{"name":"Debla"},{"name":"Pregones"}]');//'[{"name":"Tonás"},{"name":"Martinetes"},{"name":"Debla"},{"name":"Pregones"}]');
 	
 	//$('#player').hide();
@@ -33,7 +34,7 @@ $(document).ready( function() {
 			$(this).removeClass('active');
         });
 		
-	$('#save').click(function() {
+	$('#addtime').click(function() {
 		
 		if ($('#start-time').is(':empty')) {
 		// do something
@@ -44,6 +45,22 @@ $(document).ready( function() {
 		
 	}
     });
+	
+	
+	$('#save').click(function saveFeature() {
+	document.body.appendChild(newtime);
+/* 		$('#feature').submit(function () {
+		
+		return false; 
+		});*/
+		
+		// give feature div a action="destination_file"...see http://api.jquery.com/submit/
+		//send start and end times to this file as well
+		//add information to a list that displays at right of video
+		
+	
+	
+	});
 	
 	function formatTime(time){
 		time = Math.round(time);
