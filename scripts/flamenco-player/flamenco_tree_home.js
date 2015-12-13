@@ -1,10 +1,6 @@
 $(document).ready( function() {
 
-	var newtime = document.createElement("div");
-	newtime.innerHTML = "Hello";
-	var nodes = jQuery.parseJSON('[{"name":"Tonás"},{"name":"Martinetes"},{"name":"Debla"},{"name":"Pregones"}]');//'[{"name":"Tonás"},{"name":"Martinetes"},{"name":"Debla"},{"name":"Pregones"}]');
-	
-	//$('#player').hide();
+	var newworkspace = $(".workspace").clone();
 	
 	//HOVER CHANGE COLOR
     $('.palo').hover( 
@@ -41,26 +37,27 @@ $(document).ready( function() {
 		$('#start-time').text(formatTime( player.getCurrentTime() ));
 		
 		} else {
-		$('#end-time').text(formatTime( player.getCurrentTime() ));
+		$('#stop-time').text(formatTime( player.getCurrentTime() ));
 		
 	}
     });
 	
 	
-	$('#save').click(function saveFeature() {
-	document.body.appendChild(newtime);
-/* 		$('#feature').submit(function () {
-		
-		return false; 
-		});*/
-		
-		// give feature div a action="destination_file"...see http://api.jquery.com/submit/
-		//send start and end times to this file as well
-		//add information to a list that displays at right of video
-		
-	
-	
+	$('#save').submit(function() {
+		if ($('#stop-time').not(':empty'))
+		{
+			//to the right side of player:
+			//append start time
+			//append end time
+			$('#saved').insert("#start-time")
+		}
+		// add feature div a action="destination_file"...see http://api.jquery.com/submit/
+
+		$('#start-time').empty();
+		$('#stop-time').empty();
+		return false;
 	});
+	
 	
 	function formatTime(time){
 		time = Math.round(time);
